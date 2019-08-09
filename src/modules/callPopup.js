@@ -7,7 +7,6 @@ const callPopup = () => {
         popupDiscount = document.querySelector('.popup-discount'),
         popupCheck = document.querySelector('.popup-check'),
         popupConsultation = document.querySelector('.popup-consultation');
-    console.log('callBtn: ', callBtn);
 
 
     const clickBtn = (btn, pop) => {

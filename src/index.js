@@ -9,3 +9,6 @@ callPopup();
 
 import accordion from './modules/accordion';
 accordion();
+
+import moreInfo from './modules/moreInfo';
+moreInfo();
