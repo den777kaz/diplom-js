@@ -28,8 +28,11 @@ const callPopup = () => {
     const popupClose = (popup) => {
 
         popup.addEventListener('click', (event) => {
+            
             let target = event.target;
             if (target.classList.contains('popup-close')) {
+                event.preventDefault();
+                
                 popup.style.display = '';
             } else {
 

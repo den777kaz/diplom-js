@@ -12,3 +12,6 @@ accordion();
 
 import moreInfo from './modules/moreInfo';
 moreInfo();
+
+import konstruktor from './modules/konstruktor';
+konstruktor();
