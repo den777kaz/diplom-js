@@ -15,3 +15,6 @@ moreInfo();
 
 import konstruktor from './modules/konstruktor';
 konstruktor();
+
+import calculator from './modules/calculator';
+calculator();
