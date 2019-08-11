@@ -112,7 +112,7 @@ const calculator = () => {
 
 
 
-    // WORKING BUT BAD CODE!!!!
+    // WORKING BUT BAD CODE!!!!!!!!
     function getResult() {
         let result = 0;
         let oneBarrel = 10000;
