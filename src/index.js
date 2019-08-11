@@ -18,3 +18,9 @@ konstruktor();
 
 import calculator from './modules/calculator';
 calculator();
+
+import sendForm from './modules/sendForm';
+sendForm();
+
+import validation from './modules/validation';
+validation();
