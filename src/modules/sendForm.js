@@ -64,18 +64,6 @@ const sendForm = () => {
     allForm(discForm);
     allForm(consulOrderForm);
 
-
-
-
-
-
-
-
-
-
-    
-
-
 };
 export default sendForm;
 

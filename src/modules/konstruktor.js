@@ -1,10 +1,9 @@
 const konstruktor = () => {
 
-    const onOff = document.getElementById('myonoffswitch'),
-        panelGroup = document.getElementById('accordion'),
+
+    const panelGroup = document.getElementById('accordion'),
         headPanels = document.querySelectorAll('.panel-head'),
         construktBtn = document.querySelectorAll('.construct-btn');
-
 
     // TEXTPANELS
     const textPanels = document.querySelectorAll('.text-panels'),
@@ -13,34 +12,30 @@ const konstruktor = () => {
         collapseThree = document.getElementById('collapseThree'),
         collapseFour = document.getElementById('collapseFour');
 
-
     const nextTab = () => {
         // next-btn-one
-        construktBtn.forEach((item)=> {
-            item.addEventListener('click', (event)=> {
+        construktBtn.forEach((item) => {
+            item.addEventListener('click', (event) => {
                 let target = event.target;
                 event.preventDefault();
-                if(target.closest('.next-btn-one')){
+                if (target.closest('.next-btn-one')) {
 
                     collapseTwo.style.display = 'block';
                     collapseOne.style.display = 'none';
 
-                 }else if (target.closest('.next-btn-two')){
+                } else if (target.closest('.next-btn-two')) {
 
                     collapseThree.style.display = 'block';
                     collapseTwo.style.display = 'none';
 
-                 }else if (target.closest('.next-btn-three')) {
+                } else if (target.closest('.next-btn-three')) {
 
                     collapseFour.style.display = 'block';
                     collapseThree.style.display = 'none';
-                 }
+                }
             });
-          
+
         });
-
-
-       
 
     };
     nextTab();
