@@ -39,6 +39,8 @@ const calculator = () => {
         totalResult: 0,
         oneBarrelPrice: 10000,
         twoBarrelPrice: 15000,
+        pitOne: 1000,
+        pitTwo: 2000,
         diameterBarrelOne: '',
         diameterBarrelTwo: '',
         amountBarrelOne: '',
@@ -57,24 +59,23 @@ const calculator = () => {
             this.pitBarrel();
             this.showResult();
 
-            let body = calcData;
-            
+            //-----------------  SEND OBJECT TO SERVER----------------
+            // let body = calcData;
+            // this.postData(body)
+            //     .then((response) => {
+            //         if (response.status !== 200) {
+            //             throw new Error('status network not 200!');
+            //         }
+            //         //console.log(response);
 
-            this.postData(body)
-                .then((response) => {
-                    if (response.status !== 200) {
-                        throw new Error('status network not 200!');
-                    }
-                    //console.log(response);
-                   
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            //     })
+            //     .catch((error) => {
+            //         console.error(error);
+            //     });
 
-                
 
-           
+
+
         },
         postData: function (body) {
             return fetch('./server.php', {
@@ -115,10 +116,10 @@ const calculator = () => {
 
             const diameterValueTwo = diameterTwo.options[diameterTwo.selectedIndex];
             const ringsValueTwo = ringAmountTwo.options[ringAmountTwo.selectedIndex];
-            if (onOff.checked){
+            if (onOff.checked) {
                 this.diameterBarrelTwo = '';
                 this.amountBarrelTwo = '';
-            }else {
+            } else {
                 if (diameterValueTwo.index === 1) {
                     this.diameterPriceTwo = this.twoBarrelPrice * 0.2;
                     this.diameterBarrelTwo = diameterValueTwo.text;
@@ -137,16 +138,16 @@ const calculator = () => {
                     this.amountBarrelTwo = ringsValueTwo.text;
                 }
             }
-            
+
         },
         pitBarrel: function () {
             if (onOffTwo.checked) {
                 this.pit = true;
                 if (onOff.checked) {
-                    this.pitPrice = 1000;
+                    this.pitPrice = this.pitOne;
 
                 } else {
-                    this.pitPrice = 2000;
+                    this.pitPrice = this.pitTwo;
                 }
             } else {
                 this.pitPrice = 0;
@@ -160,8 +161,8 @@ const calculator = () => {
             if (onOff.checked) {
                 this.totalResult = this.oneBarrelPrice + this.diameterPrice + this.ringPrice + this.pitPrice;
             } else if (!onOff.checked) {
-                this.totalResult = this.oneBarrelPrice + this.twoBarrelPrice + this.diameterPrice + 
-                this.ringPrice + this.diameterPriceTwo + this.ringPriceTwo + this.pitPrice;
+                this.totalResult = this.oneBarrelPrice + this.twoBarrelPrice + this.diameterPrice +
+                    this.ringPrice + this.diameterPriceTwo + this.ringPriceTwo + this.pitPrice;
             }
             calcResult.value = this.totalResult;
             this.distance = distance.value;
@@ -172,6 +173,62 @@ const calculator = () => {
     onOff.addEventListener('change', switchBarrel);
 
     console.log(calcData);
+
+    // SEND FORM WITH calcData
+    const caclDataSend = () => {
+        const errorMessage = 'Something was wrong',
+            loadMessage = 'Loading...',
+            successMessage = 'thank you! We will contact you shortly!';
+
+        const statusMessage = document.createElement('div');
+        statusMessage.textContent = '';
+        statusMessage.style.cssText = 'font-size: 1.2rem;';
+
+        const callPopupForm = document.getElementById('call-popup-form');
+
+        callPopupForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            callPopupForm.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
+            const formData = new FormData(callPopupForm);
+
+            let obj = {};
+            formData.forEach((val, key) => {
+                obj[key] = val;
+            });
+            let body = {
+                ...calcData,
+                ...obj
+            };
+            postData(body)
+                .then((response) => {
+                    if (response.status !== 200) {
+                        throw new Error('status network not 200!');
+                    }
+                    //console.log(response);
+                    statusMessage.textContent = successMessage;
+                })
+                .catch((error) => {
+                    statusMessage.textContent = errorMessage;
+                    console.error(error);
+                });
+
+            callPopupForm.reset();
+        });
+
+        const postData = (body) => {
+
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: JSON.stringify(body)
+            });
+        };
+
+    };
+    caclDataSend();
 
 };
 

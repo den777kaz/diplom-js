@@ -24,3 +24,13 @@ sendForm();
 
 import validation from './modules/validation';
 validation();
+
+
+const errorMessage = 'Something was wrong',
+    loadMessage = 'Loading...',
+    successMessage = 'thank you! We will contact you shortly!';
+
+const statusMessage = document.createElement('div');
+statusMessage.textContent = '';
+statusMessage.style.cssText = 'font-size: 1.2rem;';
+const callPopupForm = document.getElementById('call-popup-form');
