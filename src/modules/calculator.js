@@ -56,6 +56,34 @@ const calculator = () => {
             this.getDiameterAmountTwo();
             this.pitBarrel();
             this.showResult();
+
+            let body = calcData;
+            
+
+            this.postData(body)
+                .then((response) => {
+                    if (response.status !== 200) {
+                        throw new Error('status network not 200!');
+                    }
+                    //console.log(response);
+                   
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+                
+
+           
+        },
+        postData: function (body) {
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/html'
+                },
+                body: JSON.stringify(body)
+            });
         },
         getDiameterAmountOne: function () {
             const diameterValue = diameterOne.options[diameterOne.selectedIndex];

@@ -56,11 +56,13 @@ const sendForm = () => {
             });
         };
     };
+
+    allForm(questionForm);
     allForm(consultPopupForm);
     allForm(checkPopupForm);
     allForm(discPopupForm);
     allForm(callPopupForm);
-    allForm(questionForm);
+    
     allForm(discForm);
     allForm(consulOrderForm);
 
