@@ -156,8 +156,7 @@ const calculator = () => {
         },
         showResult: function () {
 
-
-
+            
             if (onOff.checked) {
                 this.totalResult = this.oneBarrelPrice + this.diameterPrice + this.ringPrice + this.pitPrice;
             } else if (!onOff.checked) {
@@ -171,10 +170,12 @@ const calculator = () => {
 
     startBtn.addEventListener('click', calcData.start.bind(calcData));
     onOff.addEventListener('change', switchBarrel);
+    distance.addEventListener('input', calcData.start.bind(calcData));
+
 
     console.log(calcData);
 
-    // SEND FORM WITH calcData
+    // SEND FORM WITH calcData ---------------------------------------
     const caclDataSend = () => {
         const errorMessage = 'Something was wrong',
             loadMessage = 'Loading...',
