@@ -59,7 +59,7 @@ const calculator = () => {
             this.pitBarrel();
             this.showResult();
 
-            this.calcDataSend();
+           
 
             //-----------------  SEND OBJECT TO SERVER----------------
             // let body = calcData;
@@ -220,8 +220,10 @@ const calculator = () => {
             this.distance = distance.value;
         }
     };
+    calcData.calcDataSend();
+    calcData.start();
 
-    startBtn.addEventListener('click', calcData.start.bind(calcData));
+    //startBtn.addEventListener('click', calcData.start.bind(calcData));
     onOff.addEventListener('change', switchBarrel);
     distance.addEventListener('input', calcData.start.bind(calcData));
 
