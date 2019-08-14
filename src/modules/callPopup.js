@@ -1,10 +1,12 @@
 const callPopup = () => {
     const callBtn = document.querySelectorAll('.call-btn'),
         discountBtn = document.querySelectorAll('.discount-btn'),
+        discountBtnCalc = document.querySelectorAll('.discount-btn-calc'),
         checkBtn = document.querySelectorAll('.check-btn'),
         consultationBtn = document.querySelectorAll('.consultation-btn'),
         popupCall = document.querySelector('.popup-call'),
         popupDiscount = document.querySelector('.popup-discount'),
+        popupDiscountCalc = document.querySelector('.popup-discount-calc'),
         popupCheck = document.querySelector('.popup-check'),
         popupConsultation = document.querySelector('.popup-consultation');
 
@@ -21,6 +23,7 @@ const callPopup = () => {
     clickBtn(discountBtn, popupDiscount);
     clickBtn(checkBtn, popupCheck);
     clickBtn(consultationBtn, popupConsultation);
+    clickBtn(discountBtnCalc, popupDiscountCalc);
 
 
 
@@ -48,6 +51,7 @@ const callPopup = () => {
     };
     popupClose(popupCall);
     popupClose(popupDiscount);
+    popupClose(popupDiscountCalc);
     popupClose(popupCheck);
     popupClose(popupConsultation);
 

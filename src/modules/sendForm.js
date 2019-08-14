@@ -12,7 +12,8 @@ const sendForm = () => {
         discPopupForm = document.getElementById('discount-popup-form'),
         discForm = document.getElementById('discForm'),
         questionForm = document.getElementById('question-form'),
-        consulOrderForm = document.getElementById('consul-order-form');
+        consulOrderForm = document.getElementById('consul-order-form'),
+        callPopupForm =  document.getElementById('call-popup-form');
 
 
     const allForm = (formName) => {
@@ -55,7 +56,7 @@ const sendForm = () => {
             });
         };
     };
-    // allForm(callPopupForm);
+    allForm(callPopupForm);
     // allForm(questionForm);
     // allForm(consultPopupForm);
     allForm(checkPopupForm);

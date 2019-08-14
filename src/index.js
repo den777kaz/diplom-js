@@ -1,8 +1,5 @@
 'use strict';
 
-import test from './modules/test';
-test();
-
 import callPopup from './modules/callPopup';
 callPopup();
 
@@ -20,6 +17,7 @@ calculator();
 
 import sendForm from './modules/sendForm';
 sendForm();
+
 
 import validation from './modules/validation';
 validation();

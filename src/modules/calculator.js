@@ -59,6 +59,8 @@ const calculator = () => {
             this.pitBarrel();
             this.showResult();
 
+            this.calcDataSend();
+
             //-----------------  SEND OBJECT TO SERVER----------------
             // let body = calcData;
             // this.postData(body)
@@ -77,11 +79,62 @@ const calculator = () => {
 
 
         },
+        calcDataSend: function () {
+            const errorMessage = 'Something was wrong',
+                loadMessage = 'Loading...',
+                successMessage = 'thank you! We will contact you shortly!';
+
+            const statusMessage = document.createElement('div');
+            statusMessage.textContent = '';
+            statusMessage.style.cssText = 'font-size: 1.2rem;';
+
+            const discountPopupFormCalc = document.getElementById('discount-popup-form-calc');
+
+            discountPopupFormCalc.addEventListener('submit', (event) => {
+                event.preventDefault();
+                discountPopupFormCalc.appendChild(statusMessage);
+                statusMessage.textContent = loadMessage;
+                const formData = new FormData(discountPopupFormCalc);
+
+                let obj = {};
+
+                formData.forEach((val, key) => {
+                    obj[key] = val;
+                });
+                console.log('obj: ', Object.keys(obj).length);
+
+
+                let body = {
+                    ...calcData,
+                    ...obj
+                };
+
+
+                this.postData(body)
+                    .then((response) => {
+                        if (response.status !== 200) {
+                            throw new Error('status network not 200!');
+                        }
+                        //console.log(response);
+                        statusMessage.textContent = successMessage;
+                    })
+                    .catch((error) => {
+                        statusMessage.textContent = errorMessage;
+                        console.error(error);
+                    });
+
+                discountPopupFormCalc.reset();
+            });
+
+
+
+        },
         postData: function (body) {
+
             return fetch('./server.php', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'text/html'
+                    'Content-Type': 'multipart/form-data' // text/html
                 },
                 body: JSON.stringify(body)
             });
@@ -156,7 +209,7 @@ const calculator = () => {
         },
         showResult: function () {
 
-            
+
             if (onOff.checked) {
                 this.totalResult = this.oneBarrelPrice + this.diameterPrice + this.ringPrice + this.pitPrice;
             } else if (!onOff.checked) {
@@ -172,69 +225,6 @@ const calculator = () => {
     onOff.addEventListener('change', switchBarrel);
     distance.addEventListener('input', calcData.start.bind(calcData));
 
-
-    console.log(calcData);
-
-    // SEND FORM WITH calcData ---------------------------------------
-    const caclDataSend = () => {
-        const errorMessage = 'Something was wrong',
-            loadMessage = 'Loading...',
-            successMessage = 'thank you! We will contact you shortly!';
-
-        const statusMessage = document.createElement('div');
-        statusMessage.textContent = '';
-        statusMessage.style.cssText = 'font-size: 1.2rem;';
-
-        const callPopupForm = document.getElementById('call-popup-form');
-
-        callPopupForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            callPopupForm.appendChild(statusMessage);
-            statusMessage.textContent = loadMessage;
-            const formData = new FormData(callPopupForm);
-
-            let obj = {};
-            formData.forEach((val, key) => {
-                obj[key] = val;
-            });
-            let body = {
-                ...calcData,
-                ...obj
-            };
-            postData(body)
-                .then((response) => {
-                    if (response.status !== 200) {
-                        throw new Error('status network not 200!');
-                    }
-                    //console.log(response);
-                    statusMessage.textContent = successMessage;
-                })
-                .catch((error) => {
-                    statusMessage.textContent = errorMessage;
-                    console.error(error);
-                });
-
-            callPopupForm.reset();
-        });
-
-        const postData = (body) => {
-
-            return fetch('./server.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                body: JSON.stringify(body)
-            });
-        };
-
-    };
-    caclDataSend();
-
 };
-
-
-
-
 
 export default calculator;

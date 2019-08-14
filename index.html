@@ -254,7 +254,7 @@
                             <div class="panel-body">
                                 <p>Введите расстояние до дома</p>
                                 <input id="distance" type="text">
-                                <button id="send-data" type="submit" class="button construct-btn call-btn">Получить расчет и скидку</button>
+                                <button id="send-data" type="submit" class="button construct-btn discount-btn-calc">Получить расчет и скидку</button>
                             </div>
                         </div>
                     </div>
@@ -505,6 +505,25 @@
         <div class="popup-content">
             <!-- <div class="popup-form"> -->
             <form id="discount-popup-form" class="capture-form text-center">
+                <span class="circle"><button class="popup-close">&times;</button></span>
+                <label for="name_11">Как к вам обращаться</label>
+                <input type="text" id="name_11" name="user_name" placeholder="Ваше имя">
+                <label for="phone_11">Ваш телефон для получения скидки</label>
+                <input class="phone-user" type="text" id="phone_11" name="user_phone" placeholder="+7(___)___-__-__">
+                <button class="button capture-form-btn" name="submit" type="submit">Заказать со скидкой</button>
+                <p class="small">Вы получите расчет стоимости с учетом выбора <br>подходящего объема септика. типа
+                    грунта, <br> расположения объектов на участке, уровня грунтовых <br> вод, типа фундамента дома и еще
+                    7 параметров</p>
+            </form>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<div class="popup-discount-calc popup">
+    <div class="popup-dialog">
+        <div class="popup-content">
+            <!-- <div class="popup-form"> -->
+            <form id="discount-popup-form-calc" class="capture-form text-center">
                 <span class="circle"><button class="popup-close">&times;</button></span>
                 <label for="name_11">Как к вам обращаться</label>
                 <input type="text" id="name_11" name="user_name" placeholder="Ваше имя">
