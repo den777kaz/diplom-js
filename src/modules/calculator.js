@@ -223,7 +223,7 @@ const calculator = () => {
     calcData.calcDataSend();
     calcData.start();
 
-    //startBtn.addEventListener('click', calcData.start.bind(calcData));
+    //startBtn.addEventListener('click', calcData.start.bind(calcData)); //
     onOff.addEventListener('change', switchBarrel);
     distance.addEventListener('input', calcData.start.bind(calcData));
 
